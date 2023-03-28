@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --bg-color: #ffffff;
+  --timer-color: #323238;
+  --timer-button-color: #323238;
+  --timer-button-color-pressed: #02799d;
+  --bg-sounds-button: #e1e1e6;
+  --bg-sounds-button-pressed: #02799d;
+  --sounds-button-color: #323238;
+  --sounds-button-pressed: #ffffff;
+  --ff-timer: "Roboto", sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  display: grid;
+  height: 100vh;
+}
+
+main {
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  gap: 19.2rem;
+}
+
+.timer {
+  margin-top: 5.8rem;
+  margin-bottom: 6.5rem;
+  font-family: var(--ff-timer);
+  font-size: 12.617rem;
+  line-height: 14.785rem;
+}
+
+.controls {
+  display: flex;
+  height: 5rem;
+  gap: 4rem;
+}
+
+.backgroundSounds {
+  width: 30.8rem;
+  height: 33.6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.backgroundSounds button {
+  transition: all 0.7s;
+  background-color: var(--bg-sounds-button);
+  height: 15.2rem;
+  width: 13.8rem;
+  border-radius: 2.4rem;
+}
+
+.backgroundSounds .pressed {
+  background-color: var(--bg-sounds-button-pressed);
+}
+
+.backgroundSounds .pressed svg path {
+  fill: var(--sounds-button-pressed);
+}
+
+.controls .pressed svg path {
+  fill: var(--timer-button-color-pressed);
+}
+
+button {
+  border: none;
+  background-color: var(--bg-color);
+}
+
+button:hover {
+  cursor: pointer;
+}
