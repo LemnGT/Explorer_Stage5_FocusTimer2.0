@@ -42,16 +42,16 @@ export default function Timer({ minutesDisplay, secondsDisplay, sound }) {
   }
 
   function fiveMoreMinutes() {
-    let moreMinutes = Number(minutesDisplay.textContent) + 5;
-    updateTimer(moreMinutes, secondsDisplay.textContent);
+    minutes = minutes + 5;
+    updateTimer(minutes, secondsDisplay.textContent);
   }
 
   function minusFiveMinutes() {
-    let lessMinutes = Number(minutesDisplay.textContent) - 5;
-    if (lessMinutes < 0) {
-      lessMinutes = 0;
+    minutes = minutes - 5;
+    if (minutes < 0) {
+      minutes = 0;
     }
-    updateTimer(lessMinutes, secondsDisplay.textContent);
+    updateTimer(minutes, secondsDisplay.textContent);
   }
   return {
     updateTimer,

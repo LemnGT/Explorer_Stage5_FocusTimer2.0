@@ -1,6 +1,10 @@
 export default function Events({
   buttonPlay,
   buttonStop,
+  forestWrapper,
+  rainWrapper,
+  cafeteriaWrapper,
+  fireplaceWrapper,
   buttonMoreTime,
   buttonLessTime,
   timer,
@@ -10,6 +14,14 @@ export default function Events({
   buttonCafeteria,
   buttonFireplace,
   sound,
+  darkModeOn,
+  page,
+  lightModeOn,
+  forestVolumeControl,
+  rainVolumeControl,
+  cafeteriaVolumeControl,
+  fireplaceVolumeControl,
+  backgroundSoundsForm,
 }) {
   buttonPlay.addEventListener("click", () => {
     sound.buttonClickSound();
@@ -43,36 +55,102 @@ export default function Events({
     timer.minusFiveMinutes(minutesDisplay);
   });
 
+  function resetBackgroundSounds() {
+    sound.stopForestSound();
+    sound.stopRainSound();
+    sound.stopCafeteriaSound();
+    sound.stopFireplaceSound();
+  }
+  function resetCard() {
+    if (
+      !forestWrapper.classList.contains("pressed") ||
+      !rainWrapper.classList.contains("pressed") ||
+      !cafeteriaWrapper.classList.contains("pressed") ||
+      !fireplaceWrapper.classList.contains("pressed")
+    ) {
+      backgroundSoundsForm.reset();
+    }
+  }
+
   buttonForest.addEventListener("click", () => {
-    buttonForest.classList.toggle("pressed");
-    if (buttonForest.classList.contains("pressed")) {
+    resetBackgroundSounds();
+
+    forestWrapper.classList.toggle("pressed");
+    if (forestWrapper.classList.contains("pressed")) {
+      rainWrapper.classList.remove("pressed");
+      cafeteriaWrapper.classList.remove("pressed");
+      fireplaceWrapper.classList.remove("pressed");
       sound.startForestSound();
     } else {
-      sound.stopForestSound();
+      backgroundSoundsForm.reset();
     }
+    resetCard();
   });
   buttonRain.addEventListener("click", () => {
-    buttonRain.classList.toggle("pressed");
-    if (buttonRain.classList.contains("pressed")) {
+    resetBackgroundSounds();
+
+    rainWrapper.classList.toggle("pressed");
+    if (rainWrapper.classList.contains("pressed")) {
+      forestWrapper.classList.remove("pressed");
+      cafeteriaWrapper.classList.remove("pressed");
+      fireplaceWrapper.classList.remove("pressed");
       sound.startRainSound();
     } else {
-      sound.stopRainSound();
+      backgroundSoundsForm.reset();
     }
+    resetCard();
   });
   buttonCafeteria.addEventListener("click", () => {
-    buttonCafeteria.classList.toggle("pressed");
-    if (buttonCafeteria.classList.contains("pressed")) {
+    resetBackgroundSounds();
+
+    cafeteriaWrapper.classList.toggle("pressed");
+    if (cafeteriaWrapper.classList.contains("pressed")) {
+      forestWrapper.classList.remove("pressed");
+      rainWrapper.classList.remove("pressed");
+      fireplaceWrapper.classList.remove("pressed");
       sound.startCafeteriaSound();
     } else {
-      sound.stopCafeteriaSound();
+      backgroundSoundsForm.reset();
     }
+    resetCard();
   });
   buttonFireplace.addEventListener("click", () => {
-    buttonFireplace.classList.toggle("pressed");
-    if (buttonFireplace.classList.contains("pressed")) {
+    resetBackgroundSounds();
+
+    fireplaceWrapper.classList.toggle("pressed");
+    if (fireplaceWrapper.classList.contains("pressed")) {
+      forestWrapper.classList.remove("pressed");
+      rainWrapper.classList.remove("pressed");
+      cafeteriaWrapper.classList.remove("pressed");
       sound.startFireplaceSound();
     } else {
-      sound.stopFireplaceSound();
+      backgroundSoundsForm.reset();
     }
+    resetCard();
+  });
+
+  darkModeOn.addEventListener("click", () => {
+    darkModeOn.classList.add("hide");
+    page.classList.replace("light", "dark");
+    lightModeOn.classList.remove("hide");
+  });
+
+  lightModeOn.addEventListener("click", () => {
+    lightModeOn.classList.add("hide");
+    page.classList.replace("dark", "light");
+    darkModeOn.classList.remove("hide");
+  });
+
+  forestVolumeControl.addEventListener("change", (e) => {
+    sound.forestSound.volume = e.currentTarget.value / 100;
+  });
+  rainVolumeControl.addEventListener("change", (e) => {
+    sound.rainSound.volume = e.currentTarget.value / 100;
+  });
+  cafeteriaVolumeControl.addEventListener("change", (e) => {
+    sound.cafeteriaSound.volume = e.currentTarget.value / 100;
+  });
+  fireplaceVolumeControl.addEventListener("change", (e) => {
+    sound.fireplaceSound.volume = e.currentTarget.value / 100;
   });
 }

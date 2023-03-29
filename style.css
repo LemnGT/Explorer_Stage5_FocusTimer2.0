@@ -6,6 +6,11 @@
 
 :root {
   font-size: 62.5%;
+
+  --ff-timer: "Roboto", sans-serif;
+}
+
+.light {
   --bg-color: #ffffff;
   --timer-color: #323238;
   --timer-button-color: #323238;
@@ -14,7 +19,19 @@
   --bg-sounds-button-pressed: #02799d;
   --sounds-button-color: #323238;
   --sounds-button-pressed: #ffffff;
-  --ff-timer: "Roboto", sans-serif;
+  transition: all 0.5s;
+}
+
+.dark {
+  --bg-color: #121214;
+  --timer-color: #ffffff;
+  --timer-button-color: #c4c4cc;
+  --timer-button-color-pressed: #0a3442;
+  --bg-sounds-button: #29292e;
+  --bg-sounds-button-pressed: #0a3442;
+  --sounds-button-color: #c4c4cc;
+  --sounds-button-pressed: #ffffff;
+  transition: all 0.5s;
 }
 
 body {
@@ -31,6 +48,7 @@ main {
 }
 
 .timer {
+  color: var(--timer-color);
   margin-top: 5.8rem;
   margin-bottom: 6.5rem;
   font-family: var(--ff-timer);
@@ -52,11 +70,19 @@ main {
   grid-template-rows: 1fr 1fr;
 }
 
-.backgroundSounds button {
-  transition: all 0.7s;
+.backgroundSounds div {
   background-color: var(--bg-sounds-button);
   height: 15.2rem;
   width: 13.8rem;
+  border-radius: 2.4rem;
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.backgroundSounds button {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 2.4rem 4rem 3.2rem 4rem;
   border-radius: 2.4rem;
 }
 
@@ -72,11 +98,30 @@ main {
   fill: var(--timer-button-color-pressed);
 }
 
+.volumeControl {
+  width: 9rem;
+  height: 1.6rem;
+  margin-left: 2.4rem;
+}
+
 button {
   border: none;
   background-color: var(--bg-color);
+  transition: all 0.5s;
 }
 
 button:hover {
   cursor: pointer;
+}
+
+.darkModeOn,
+.lightModeOn {
+  position: fixed;
+  top: 6rem;
+  right: 6rem;
+}
+
+.hide {
+  transition: all 0.5s;
+  transform: translateY(-15rem);
 }

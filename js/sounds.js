@@ -59,5 +59,9 @@ export default function Sounds() {
     stopFireplaceSound,
     timeEnd,
     buttonClickSound,
+    forestSound,
+    rainSound,
+    cafeteriaSound,
+    fireplaceSound,
   };
 }
